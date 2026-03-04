@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CloudNotes</title>
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+
+    {% if user.is_authenticated %}
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/logout/">Logout</a>
+        <span>Hello, {{ user.username }}</span>
+    {% else %}
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+    {% endif %}
+</nav>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
