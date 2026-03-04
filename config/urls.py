@@ -10,4 +10,8 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     path("login/", auth_views.LoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(next_page="home"), name="logout"),
+
+    path("notebooks/create/", views.create_notebook, name="create_notebook"),
+    path("notebooks/update/<int:pk>/", views.update_notebook, name="update_notebook"),
+    path("notebooks/delete/<int:pk>/", views.delete_notebook, name="delete_notebook"),
 ]
