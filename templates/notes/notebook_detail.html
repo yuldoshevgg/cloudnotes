@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ notebook.title }}</h2>
+
+<a href="/notes/create/{{ notebook.id }}/">Add Note</a>
+
+<ul>
+    {% for note in notes %}
+        <li>
+            <strong>{{ note.title }}</strong>
+
+            <br>
+            {{ note.content }}
+
+            <br>
+            Tags:
+            {% for tag in note.tags.all %}
+                {{ tag.name }}
+            {% empty %}
+                No tags
+            {% endfor %}
+
+            <br>
+            <a href="/notes/update/{{ note.id }}/">Edit</a>
+            <a href="/notes/delete/{{ note.id }}/">Delete</a>
+        </li>
+    {% empty %}
+        <li>No notes yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="/dashboard/">Back to Dashboard</a>
+{% endblock %}
