@@ -34,5 +34,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd ~/cloudnotes
+            docker-compose down --remove-orphans
             docker-compose pull
-            docker-compose up -d --force-recreate
+            docker-compose up -d
