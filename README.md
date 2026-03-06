@@ -12,7 +12,6 @@ The application is deployed on a cloud server and accessible via HTTPS.
 
 **Website:**  
 https://yuldoshevgg.work
-https://yuldoshevgg.work
 
 ---
 
