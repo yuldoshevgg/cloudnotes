@@ -8,7 +8,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
 
   web:
-    build: .
+    image: ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/app/staticfiles
