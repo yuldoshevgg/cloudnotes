@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and push image
         run: |
-          docker build --pull -t ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest .
+          docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest
 
       - name: Deploy to server
