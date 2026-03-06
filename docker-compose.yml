@@ -8,7 +8,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
 
   web:
-    image: ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest
+    image: cloudnotes/cloudnotes:latest
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/app/staticfiles
@@ -17,17 +17,6 @@ services:
       - .env
     depends_on:
       - db
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - static_volume:/app/staticfiles
-      - media_volume:/app/media
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - web
 
 volumes:
   postgres_data:
