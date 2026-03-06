@@ -2,14 +2,14 @@ name: CloudNotes CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Login to DockerHub
@@ -18,16 +18,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Docker image
+      - name: Build and push image
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest .
-
-      - name: Push Docker image
-        run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest
 
       - name: Deploy to server
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
@@ -36,3 +33,4 @@ jobs:
             cd ~/cloudnotes
             docker compose pull web
             docker compose up -d web
+            docker image prune -f
