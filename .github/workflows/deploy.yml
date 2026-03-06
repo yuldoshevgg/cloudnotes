@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and push image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest .
+          docker build --pull -t ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/cloudnotes:latest
 
       - name: Deploy to server
@@ -32,5 +32,5 @@ jobs:
           script: |
             cd ~/cloudnotes
             docker compose pull web
-            docker compose up -d web
+            docker compose up -d --force-recreate web
             docker image prune -f
