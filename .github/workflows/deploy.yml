@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show commit
+        run: |
+          git log -1
+          
       - name: Checkout
         uses: actions/checkout@v3
 
