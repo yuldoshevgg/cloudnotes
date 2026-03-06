@@ -12,9 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Show commit
+      - name: Show files
         run: |
-          git log -1
+          pwd
+          ls -la
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
