@@ -15,6 +15,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . .
+RUN ls -la
 
 RUN addgroup --system app && adduser --system --ingroup app app
 RUN chown -R app:app /app
