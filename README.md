@@ -38,13 +38,16 @@ User Browser
       │
       │ HTTPS
       ▼
-   Nginx (Reverse Proxy)
+Cloudflare
       │
       ▼
- Django Application (Gunicorn)
+Nginx (Reverse Proxy + Static Files)
       │
       ▼
- PostgreSQL Database
+Django Application (Gunicorn)
+      │
+      ▼
+PostgreSQL Database
 ```
 
 Each service runs inside its own **Docker container**, ensuring consistent environments across development and production.
